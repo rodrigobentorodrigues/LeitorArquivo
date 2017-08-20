@@ -2,10 +2,12 @@ package com.ifpb.projeto.infra;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,10 +35,19 @@ public class Leitor {
             arquivoAuxiliar = new File(nomeArquivo);
 
             if (arquivoAuxiliar.exists()) {
-                leitorArquivo = new FileReader(nomeArquivo);
-                leitorBuffer = new BufferedReader(leitorArquivo);
 
-                tokenTitulos = new StringTokenizer(leitorBuffer.readLine(), "|");
+                leitorArquivo = new FileReader(nomeArquivo);
+                leitorBuffer = new BufferedReader(new InputStreamReader(
+                        new FileInputStream(nomeArquivo), "ISO-8859-1"));
+
+                String[] tipoArquivo = nomeArquivo.split("\\.");
+
+                if (tipoArquivo[tipoArquivo.length - 1].equals("txt")) {
+                    tokenTitulos = new StringTokenizer(leitorBuffer.readLine(), "|");
+                } else {
+                    tokenTitulos = new StringTokenizer(leitorBuffer.readLine(), "	");
+                }
+
                 while (tokenTitulos.hasMoreTokens()) {
                     titulos.add(tokenTitulos.nextToken());
                 }
@@ -51,12 +62,16 @@ public class Leitor {
 
                 metEscrita = new FileWriter(arquivoCriado, false);
                 escritor = new PrintWriter(metEscrita);
-
+                
                 String palavra = "";
 
                 while ((palavra = leitorBuffer.readLine()) != null) {
 
-                    tokenPalavras = new StringTokenizer(palavra, "|");
+                    if (tipoArquivo[tipoArquivo.length - 1].equals("txt")) {
+                        tokenPalavras = new StringTokenizer(palavra, "|");
+                    } else {
+                        tokenPalavras = new StringTokenizer(palavra, "	");
+                    }
 
                     while (tokenPalavras.hasMoreTokens()) {
                         String p = tokenPalavras.nextToken();
@@ -67,25 +82,20 @@ public class Leitor {
 
                 int cont = 0;
                 for (int i = 0; i < palavras.size(); i++) {
-                    
+
                     if (cont == titulos.size()) {
                         cont = 0;
                         System.out.println("");
-                        escritor.println("");
+                        escritor.println();
                     }
-                    
+
                     escritor.println(titulos.get(cont) + ": " + palavras.get(i));
                     System.out.println(titulos.get(cont) + ": " + palavras.get(i));
                     cont++;
-                }  
+                }
 
-                System.out.println("Escrito com sucesso!");
+                System.out.println("\nEscrito com sucesso!");
 
-                leitorArquivo.close();
-                leitorBuffer.close();
-                metEscrita.close();
-                escritor.close();
-                
             } else {
                 System.out.println("Arquivo não encontrado!");
             }
@@ -94,6 +104,15 @@ public class Leitor {
             ex.printStackTrace();
         } catch (IOException ex) {
             ex.printStackTrace();
+        } finally {
+            try {
+                leitorArquivo.close();
+                leitorBuffer.close();
+                metEscrita.close();
+                escritor.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
         }
     }
 
