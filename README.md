@@ -9,7 +9,7 @@
 
 #### 1: Clone o repositório:
 ##### https://github.com/rodrigobentorodrigues/LeitorArquivo.git
-#### 2: Baixe o(os) arquivo(os) contidos no site do [TCE](https://portal.tce.pb.gov.br/dados-abertos-do-sagres-tcepb/).
+#### 2: Baixe o(os) arquivo(os) contidos no site do [TCE](https://portal.tce.pb.gov.br/dados-abertos-do-sagres-tcepb/) ou do [Portal da Transparência](http://www.transparencia.gov.br/downloads/mensal.asp?c=Transferencias).
 #### 3: Cole o arquivo (.txt) dentro da pasta (dados) contida na pasta do projeto (LeitorArquivo-master).
 #### 4: Abra o projeto na IDE de sua preferencia.
 #### 5: Altere o nome da String (nomeArquivo) na linha 10, para o nome do arquivo baixado.
