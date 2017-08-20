@@ -2,8 +2,8 @@
 
 ## Descrição
 
-##### Este programa tem como intuito percorrer todo um arquivo (.txt) baixado no site do [TCE](https://portal.tce.pb.gov.br/dados-abertos-do-sagres-tcepb/) e criar um novo arquivo mais organizado e explicativo.
-##### Os dados contidos nesses arquivos serão de extrema importancia para a criação de uma ferramenta de acompanhamento de gestão.
+##### Este programa tem como intuito percorrer todo um arquivo (.txt) baixado no site do [TCE](https://portal.tce.pb.gov.br/dados-abertos-do-sagres-tcepb/) ou do tipo (.csv) encontrados no site do [Portal da Transparência](http://www.transparencia.gov.br/downloads/mensal.asp?c=Transferencias) e criar um novo arquivo mais organizado e explicativo. 
+##### A idéia é conseguir conseguir extrair os dados desses dois tipos de arquivos, onde serão de extrema importancia para a criação de uma ferramenta de acompanhamento de gestão.
 
 ## Para utilizar a ferramenta
 
